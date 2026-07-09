@@ -5,7 +5,7 @@
 |Column            |Type    |Options    |
 |------------------|--------|-----------|
 |nickname          |string  |null: false|
-|email             |string  |null: false|
+|email             |string  |null: false unique: true|
 |encrypted_password|string  |null: false|
 |last_name         |string  |null: false|
 |first_name        |string  |null: false|
@@ -30,7 +30,7 @@
 |shipping_origin_id     |integer |null: false|
 |shipping_duration_id   |integer |null: false|
 |price                  |integer |null: false|
-|user_id                |references|null: false foreign_key: true|
+|user                   |references|null: false foreign_key: true|
 
 ### Association
 
@@ -41,8 +41,8 @@
 
 |Column    |Type      |Options                      |
 |----------|----------|-----------------------------|
-|user_id   |references|null: false foreign_key: true|
-|item_id   |references|null: false foreign_key: true|
+|user      |references|null: false foreign_key: true|
+|item      |references|null: false foreign_key: true|
 
 ### Association 
 
@@ -51,15 +51,15 @@
 - has_one :address
 
 ## addresses テーブル
-|Column             |Type    |Options    |
-|-------------------|--------|-----------|
-|postal_code        |string  |null: false|
-|prefecture_id      |integer |null: false|
-|city               |string  |null: false|
-|street_address     |string  |null: false|
-|building_name      |string  |           |
-|phone_number       |string  |null: false|
-|order_id           |bigint  |null: false foreign_key: true|
+|Column             |Type      |Options    |
+|-------------------|----------|-----------|
+|postal_code        |string    |null: false|
+|prefecture_id      |integer   |null: false|
+|city               |string    |null: false|
+|street_address     |string    |null: false|
+|building_name      |string    |           |
+|phone_number       |string    |null: false|
+|order              |references|null: false foreign_key: true|
 
 ### Association
 
