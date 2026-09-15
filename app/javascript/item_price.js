@@ -1,5 +1,5 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const priceInput = document.getElementById('item-price')
-
-  console.log(priceInput)
+const priceInput = document.getElementById('item-price');
+priceInput.addEventListener("input", () => {
+  console.log("イベント発火");
 })
+
