@@ -30,6 +30,7 @@ def item_params
     :shipping_duration_id,
     :shipping_fee_burden_id,
     :shipping_origin_id,
-    :price
+    :price,
+    :image
   )
 end
