@@ -37,11 +37,6 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors[:condition_id]).to be_present
       end
-      it 'shipping_durationが未選択では出品できない' do
-        @item.shipping_duration_id = 1
-        @item.valid?
-        expect(@item.errors[:shipping_duration_id]).to be_present
-      end
       it 'shipping_fee_burdenが未選択では出品できない' do
         @item.shipping_fee_burden_id = 1
         @item.valid?
@@ -51,6 +46,11 @@ RSpec.describe Item, type: :model do
         @item.shipping_origin_id = 1
         @item.valid?
         expect(@item.errors[:shipping_origin_id]).to be_present
+      end
+      it 'shipping_durationが未選択では出品できない' do
+        @item.shipping_duration_id = 1
+        @item.valid?
+        expect(@item.errors[:shipping_duration_id]).to be_present
       end
       it 'priceが空では出品できない' do
         @item.price = ''
@@ -66,6 +66,16 @@ RSpec.describe Item, type: :model do
         @item.price = 10000000
         @item.valid?
         expect(@item.errors[:price]).to be_present
+      end
+      it '価格に半角数字以外が含まれている場合は出品できない' do
+        @item.price = 'abc123'
+        @item.valid?
+        expect(@item.errors[:price]).to be_present
+      end
+      it '出品者が紐付いていない場合は出品できない' do
+        @item.user = nil
+        @item.valid?
+        expect(@item.errors[:user]).to be_present
       end
     end
   end
