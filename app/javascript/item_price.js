@@ -5,14 +5,19 @@ const price = () => {
 
   if (!priceInput || !addTaxDom || !profitDom) return;
 
-  priceInput.addEventListener("input", () => {
-    const inputValue = priceInput.value;
+  const calculatePrice = () => {
+    const inputValue = Number(priceInput.value);
     const tax = Math.floor(inputValue / 10);
 
     addTaxDom.innerHTML = tax;
     profitDom.innerHTML = inputValue - tax;
-  });
+  };
+  
+  priceInput.addEventListener("input", calculatePrice);
+
+  calculatePrice();
 };
+
 
 window.addEventListener("turbo:load", price);
 window.addEventListener("turbo:render", price);
